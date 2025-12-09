@@ -154,8 +154,8 @@ function App() {
       <div className="dashboard-grid" style={{ gridTemplateColumns: '1fr' }}>
         <div className="card" style={{ height: '400px' }}>
             <h2>Spend vs Revenue (Trend)</h2>
-            <div style={{ flex: 1, minHeight: 0 }}>
-              <ResponsiveContainer width="100%" height="100%">
+            <div style={{ flex: 1, minHeight: 0, minWidth: 0 }}>
+              <ResponsiveContainer width="100%" height="100%" debounce={1}>
                   <AreaChart data={timelineData}>
                       <defs>
                           <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
@@ -169,7 +169,7 @@ function App() {
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" stroke="#373a40" />
                       <XAxis dataKey="date" stroke="#9ca3af" />
-                      <YAxis stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" scale="log" domain={[1, 'auto']} allowDataOverflow />
                       <Tooltip 
                           contentStyle={{ backgroundColor: '#25262b', border: '1px solid #373a40' }}
                       />
@@ -183,12 +183,12 @@ function App() {
 
         <div className="card" style={{ height: '400px' }}>
             <h2>Channel Spend Mix</h2>
-            <div style={{ flex: 1, minHeight: 0 }}>
-              <ResponsiveContainer width="100%" height="100%">
+            <div style={{ flex: 1, minHeight: 0, minWidth: 0 }}>
+              <ResponsiveContainer width="100%" height="100%" debounce={1}>
                   <BarChart data={timelineData}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#373a40" />
                       <XAxis dataKey="date" stroke="#9ca3af" />
-                      <YAxis stroke="#9ca3af" />
+                      <YAxis stroke="#9ca3af" scale="log" domain={[1, 'auto']} allowDataOverflow />
                       <Tooltip contentStyle={{ backgroundColor: '#25262b', border: '1px solid #373a40' }} />
                       <Legend />
                       <Bar dataKey="google" stackId="a" fill="#4285F4" name="Google" />
